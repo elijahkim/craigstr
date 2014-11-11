@@ -4,8 +4,10 @@
 
 <%= image_tag @post.image, width: 500 %>
 
-<div class="edit">
-  <%= link_to "Edit Post", edit_post_path(@post) %>
-</div>
+<% if @user == current_user%>
+  <div class="edit">
+    <%= link_to "Edit Post", edit_post_path(@post) %>
+  </div>
 
-<%= button_to "Delete Post", post_path(@post), method: :delete %>
+  <%= button_to "Delete Post", post_path(@post), method: :delete %>
+<% end %>
