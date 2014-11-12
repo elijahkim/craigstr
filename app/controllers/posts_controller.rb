@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :require_login, except: :show
+  before_action :require_owner, only: [:edit]
 
   def new
     @post = Post.new
@@ -14,6 +15,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @user = @post.user
   end
 
   def edit
@@ -29,14 +31,24 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy
-
-    redirect_to root_path
+    @user = @post.user
+    if @user == current_user
+      @post.destroy
+      redirect_to root_path
+    end
   end
 
   private
 
   def post_params
     params.require(:post).permit(:title, :description, :image)
+  end
+
+  def require_owner
+    @post = Post.find(params[:id])
+    @user = @post.user
+    if @user != current_user
+      raise User::NotAuthorized
+    end
   end
 end
