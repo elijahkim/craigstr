@@ -7,4 +7,9 @@ class Post < ActiveRecord::Base
   def owned_by?(user)
     self.user == user
   end
+
+  def mark_as_spam!
+    self.spam = true 
+    save
+  end
 end
