@@ -13,4 +13,8 @@ Rails.application.routes.draw do
   end
 
   root "regions#index"
+
+  resources :posts, only: [] do
+    resource :spam, only: [:create]
+  end
 end

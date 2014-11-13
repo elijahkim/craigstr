@@ -11,3 +11,7 @@
 
   <%= button_to "Delete Post", region_post_path(@post.region, @post), method: :delete %>
 <% end %>
+
+<div>
+  <%= button_to "Flag as Spam", post_spam_path(@post) %>
+</div> 
