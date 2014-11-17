@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = authenticate_session(session_params)
+    user = User.find_by(email: params[:session][:email])
 
     if sign_in(user)
       redirect_to root_path
@@ -25,4 +25,3 @@ class SessionsController < ApplicationController
     params.require(:session).permit(:email, :password)
   end
 end
-
