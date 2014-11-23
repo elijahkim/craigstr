@@ -1,13 +1,16 @@
-<h1><%= @category.name %></h1>
+<%= link_to "Back to #{ @region.name } Posts", region_path(@region) %>
 
-<h3><%= @category.description %></h1>
+<%= button_to "Create Post", new_region_post_path(@region), method: :get %>
 
+<h2><%= @category.name %></h2>
 
-<% if current_user.admin? %>
-  <%= link_to "edit category", edit_region_category_path(@region, @category) %>
-  <%= link_to "delete category", region_category_path(@region, @category), method: :delete %>
-<% end %>
+<h3><%= @category.description %></h3>
 
 <ul>
   <%= render partial: "post_link", collection: @category.ordered_posts(@region), as: :post, locals: {region: @region} %>
 </ul>
+
+<% if current_user.admin? %>
+  <%= button_to "Edit Category", edit_region_category_path(@region, @category), method: :get %>
+  <%= button_to "Delete Category", region_category_path(@region, @category), method: :delete %>
+<% end %>

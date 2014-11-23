@@ -34,13 +34,13 @@ ActiveRecord::Schema.define(version: 20141113142940) do
   add_index "category_relationships", ["post_id"], name: "index_category_relationships_on_post_id", using: :btree
 
   create_table "posts", force: true do |t|
+    t.string   "name",        null: false
     t.text     "description"
     t.string   "image"
     t.integer  "user_id",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "region_id",   null: false
-    t.string   "name",        null: false
   end
 
   add_index "posts", ["region_id"], name: "index_posts_on_region_id", using: :btree

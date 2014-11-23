@@ -1,20 +1,20 @@
-<% if current_user.admin? %>
-  <%= link_to "Edit Region", edit_region_path(@region) %>
-  <%= button_to "Delete Region", region_path(@region), method: :delete %>
-<% end %>
+<%= button_to "Create Post", new_region_post_path(@region), method: :get %>
 
 <h2><%= @region.name %></h2>
 
-<%= link_to "Create Post", new_region_post_path(@region) %>
+<% if current_user.admin? %>
+  <%= button_to "Edit Region", edit_region_path(@region), method: :get %>
+  <%= button_to "Delete Region", region_path(@region), method: :delete %>
+<% end %>
 
 <h3>Categories</h3>
-
-<% if current_user.admin? %>
-  <%= link_to "New Category", new_region_category_path(@region) %>
-<% end %>
 
 <ul>
   <% @categories.each do |category| %>
     <li><%= link_to category.name, [@region, category] %></li>
   <% end %>
 </ul>
+
+<% if current_user.admin? %>
+  <%= button_to "New Category", new_region_category_path(@region), method: :get %>
+<% end %>

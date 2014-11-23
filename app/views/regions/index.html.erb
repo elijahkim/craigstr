@@ -1,11 +1,11 @@
 <h2>Regions</h2>
 
-<% if current_user.admin? %>
-  <%= link_to "New Region", new_region_path %>
-<% end %>
-
 <ul>
   <% @regions.each do |region| %>
     <li><%= link_to region.name, region %></li>
   <% end %>
 </ul>
+
+<% if current_user.admin? %>
+  <%= button_to "New Region", new_region_path, method: :get %>
+<% end %>
