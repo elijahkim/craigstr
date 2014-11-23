@@ -1,5 +1,5 @@
 <h2>Posts by <%= current_user.email %></h2>
 
 <div class="posts">
-  <%= render @posts || "You have no posts right now." %>
+  <%= render(@posts) || "You have no posts right now." %>
 </div>

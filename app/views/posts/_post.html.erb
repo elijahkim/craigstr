@@ -1,3 +1,7 @@
+<% if request.referer =~ /categories/ %>
+  <%= link_to "Back to Posts", :back %>
+<% end %>
+
 <h2><%= post.name %></h2>
 
 <p>Posted <%= time_ago_in_words(post.created_at) %> ago</p>
@@ -12,10 +16,8 @@
 
 <%= image_tag post.image, width: 500 %>
 
-<% if @post.owned_by?(current_user) || current_user.admin? %>
-  <div class="edit">
-    <%= link_to "Edit Post", edit_region_post_path(@post.region, @post) %>
-  </div>
+<% if post.owned_by?(current_user) || current_user.admin? %>
+  <%= button_to "Edit Post", edit_region_post_path(post.region, post), method: :get %>
 
-  <%= button_to "Delete Post", region_post_path(@post.region, @post), method: :delete %>
+  <%= button_to "Delete Post", region_post_path(post.region, post), method: :delete %>
 <% end %>
