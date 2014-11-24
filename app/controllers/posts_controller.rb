@@ -8,11 +8,13 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = current_user.posts.new(post_params)
-    post.region = find_region
-    post.save
-
-    redirect_to [post.region, post]
+    @post = current_user.posts.new(post_params)
+    @region = find_region
+    if @post.save
+      redirect_to [@region, @post]
+    else
+      render :new
+    end
   end
 
   def show
@@ -24,9 +26,11 @@ class PostsController < ApplicationController
   end
 
   def update
-    post.update(post_params)
-
-    redirect_to [post.region, post]
+    if post.update(post_params)
+      redirect_to [post.region, post]
+    else
+      render :edit
+    end
   end
 
   def destroy
