@@ -1,5 +1,7 @@
 <%= form_for [region, category] do |form| %>
 
+  <%= render partial: "app/errors", locals: { object: @category } %>
+
   <div class="name-input">
     <%= form.label :name %>
     <%= form.text_field :name %>

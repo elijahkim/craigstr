@@ -9,9 +9,11 @@ class CategoriesController < ApplicationController
   def create
     @region = find_region
     @category = Category.new(category_params)
-    @category.save
-
-    redirect_to [@region, @category]
+    if @category.save
+      redirect_to [@region, @category]
+    else
+      render :new
+    end
   end
 
   def show
@@ -27,9 +29,11 @@ class CategoriesController < ApplicationController
   def update
     @region = find_region
     @category = find_category
-    @category.update(category_params)
-
-    redirect_to [@region, @category]
+    if @category.update(category_params)
+      redirect_to [@region, @category]
+    else
+      render :edit
+    end
   end
 
   def destroy

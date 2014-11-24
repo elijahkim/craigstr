@@ -7,9 +7,11 @@ class RegionsController < ApplicationController
 
   def create
     @region = Region.new(region_params)
-    @region.save
-
-    redirect_to @region
+    if @region.save
+      redirect_to @region
+    else
+      render :new
+    end
   end
 
   def edit
@@ -17,10 +19,12 @@ class RegionsController < ApplicationController
   end
 
   def update
-    region = Region.find(params[:id])
-    region.update(region_params)
-
-    redirect_to region
+    @region = Region.find(params[:id])
+    if @region.update(region_params)
+      redirect_to @region
+    else
+      render :edit
+    end
   end
 
   def destroy
