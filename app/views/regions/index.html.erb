@@ -6,6 +6,8 @@
   <% end %>
 </ul>
 
+<%= paginate @regions %>
+
 <% if current_user.admin? %>
   <%= button_to "New Region", new_region_path, method: :get %>
 <% end %>

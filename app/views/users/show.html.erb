@@ -3,3 +3,7 @@
 <div class="posts">
   <%= render(@posts) || "You have no posts right now." %>
 </div>
+
+<div class="pagination">
+  <%= paginate @posts %>
+</div>

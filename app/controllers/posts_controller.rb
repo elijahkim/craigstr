@@ -9,7 +9,9 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
-    @region = find_region
+    @post.region = find_region
+    @region = @post.region
+
     if @post.save
       redirect_to [@region, @post]
     else
