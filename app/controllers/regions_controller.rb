@@ -36,11 +36,11 @@ class RegionsController < ApplicationController
 
   def show
     @region = Region.find(params[:id])
-    @categories = Category.all
+    @categories = Category.all.page(params[:page]).per(15)
   end
 
   def index
-    @regions = Region.all
+    @regions = Region.all.page(params[:page]).per(20)
   end
 
   private

@@ -19,6 +19,7 @@ class CategoriesController < ApplicationController
   def show
     @region = find_region
     @category = find_category
+    @posts = @category.ordered_posts(@region).page(params[:page])
   end
 
   def edit

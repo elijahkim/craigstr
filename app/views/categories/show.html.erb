@@ -7,8 +7,10 @@
 <h3><%= @category.description %></h3>
 
 <ul>
-  <%= render partial: "post_link", collection: @category.ordered_posts(@region), as: :post, locals: {region: @region} %>
+  <%= render partial: "post_link", collection: @posts, as: :post, locals: {region: @region} %>
 </ul>
+
+<%= paginate @posts %>
 
 <% if current_user.admin? %>
   <%= button_to "Edit Category", edit_region_category_path(@region, @category), method: :get %>

@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @posts = current_user.posts
+    @posts = current_user.posts.page(params[:page]).per(5)
   end
 
   private

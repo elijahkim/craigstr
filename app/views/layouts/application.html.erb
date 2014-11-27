@@ -8,23 +8,28 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="header">
-    <% if signed_in? %>
-      <%= link_to "Sign out", session_path, method: :delete %>
-      <%= link_to "My Posts", user_path(current_user) %>
-    <% else %>
-      <%= link_to "Sign in", new_session_path %>
-      <%= link_to "Sign up", new_user_path %>
-    <% end %>
+  <div id="container">
+    <div class="header">
+      <% if signed_in? %>
+        <%= link_to "Sign out", session_path, method: :delete %>
+        <%= link_to "My Posts", user_path(current_user) %>
+      <% else %>
+        <%= link_to "Sign in", new_session_path %>
+        <%= link_to "Sign up", new_user_path %>
+      <% end %>
 
-    <% if current_user.admin? %>
-      <%= link_to "Admin Page", admin_path %>
-    <% end %>
+      <% if current_user.admin? %>
+        <%= link_to "Admin Page", admin_path %>
+      <% end %>
+    </div>
+
+    <h1><%= link_to "Craigstr", root_path %></h1>
+
+    <%= yield %>
   </div>
 
-  <h1><%= link_to "Craigstr", root_path %></h1>
-
-  <%= yield %>
-
+  <div id="footer">
+    <p>Check out the code on <%= link_to "GitHub", "https://github.com/elijahkim/craigstr", html_options = { target: "_blank"} %></p>
+  </div>
 </body>
 </html>
